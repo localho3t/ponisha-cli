@@ -8,7 +8,7 @@ def get_header(state="login",token=""):
             "User-Agent": "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Mobile Safari/537.36"
         }
 
-    if state == "profile":
+    if state == "with_token":
         return {
             "Accept": "application/json",
             "Content-Type": "application/json",

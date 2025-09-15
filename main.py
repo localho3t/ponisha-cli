@@ -15,7 +15,7 @@ def main():
     else:
         pf = Profile()
         pf.request()
-        print(pf.filename)
+        pf.request_me()
 
 
 
