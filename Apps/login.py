@@ -1,10 +1,10 @@
 from header import *
-from Urls import *
+from Urls import urls
 import requests
 class Login:
     def __init__(self):
-        self.url = login_url()
-        self.otp_url = otp_url()
+        self.url = urls['login']
+        self.otp_url = urls['otp']
         self.header = get_header("login")
 
 

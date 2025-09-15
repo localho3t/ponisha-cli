@@ -1,6 +1,6 @@
 import os
 from Apps.login import Login
-
+from Apps.Profile import Profile
 def main():
     if not os.path.exists(".env"):
         os.makedirs("sessions")
@@ -12,6 +12,10 @@ def main():
         lg.set_otp_user(client_otp)
         lg.execute_login_l2()
 
+    else:
+        pf = Profile()
+        pf.request()
+        print(pf.filename)
 
 
 
