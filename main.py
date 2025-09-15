@@ -3,6 +3,7 @@ from Apps.login import Login
 
 def main():
     if not os.path.exists(".env"):
+        os.makedirs("sessions")
         lg = Login()
         client_number = input("Enter Phone Number : ")
         lg.set_user_number(client_number)
