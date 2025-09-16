@@ -4,4 +4,4 @@ sessions/*.sessionProfile
 sessions/*.sessionMe
 *.pyc
 test/*.py
-instance/*.db
+instance/*.sqlite3
