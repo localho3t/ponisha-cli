@@ -1,6 +1,7 @@
 import os
 from Apps.login import Login
 from Apps.Profile import Profile
+from Apps.Kernel.app import AppKernel
 def main():
     if not os.path.exists(".env"):
         os.makedirs("sessions")
@@ -17,6 +18,8 @@ def main():
         pf.request()
         pf.request_me()
 
+        ak = AppKernel(pf.get_mefilename(),pf.get_filename())
+        ak.start()
 
 
 
