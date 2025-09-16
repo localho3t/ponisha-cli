@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>پروفایل — Tailwind Glass UI (Realtime)</title>
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            mint: { 50:'#effcf6',100:'#e6f5ec',200:'#c6ebd7',300:'#9fd9bb',400:'#78c6a0',500:'#4fb885',600:'#3a9a6f',700:'#2e7a59' }
+          },
+          boxShadow: { soft: '0 10px 30px -12px rgba(79,184,133,0.35)' },
+          fontFamily: { sans:["Vazirmatn","Estedad","Inter","ui-sans-serif","system-ui"] }
+        }
+      }
+    }
+  </script>
+  <!-- Persian fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800&family=Estedad:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    .glass{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(255,255,255,.6)}
+    .glass-dark{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(255,255,255,.55)}
+    .card{ @apply rounded-2xl border border-mint-100 shadow-soft glass; }
+    .muted{ @apply text-gray-600; }
+    .chip{ @apply inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/70 border border-mint-100 text-mint-900 text-sm; }
+    .btn-primary{ @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-mint-500 text-white hover:bg-mint-600 transition; }
+    .icon{ width:1.1rem;height:1.1rem }
+    .modal-backdrop{ @apply fixed inset-0 bg-black/30 backdrop-blur-sm; }
+    .modal-panel{ @apply glass-dark rounded-2xl shadow-soft border border-mint-100; }
+    .table-head{ @apply bg-mint-100/60; }
+    .table-row{ @apply hover:bg-mint-50/70 transition; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-mint-50 to-white text-gray-900 font-sans">
+  <!-- HEADER -->
+  <header class="relative">
+    <div id="cover" class="h-44 sm:h-60 w-full bg-gradient-to-l from-mint-300 to-mint-100"></div>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 -mt-12 sm:-mt-16">
+      <div class="card p-5 sm:p-6 flex items-center gap-4 sm:gap-6">
+        <img id="avatar" alt="avatar" class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover ring-4 ring-white shadow-soft" src=""/>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 flex-wrap">
+            <h1 id="username" class="text-2xl sm:text-3xl font-extrabold">نام کاربر</h1>
+            <span id="verifiedBadge" class="hidden chip">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M8.603 3.799a4.5 4.5 0 0 1 6.794 0l.235.27a1.5 1.5 0 0 0 1.08.504l.356.006a4.5 4.5 0 0 1 4.332 4.332l.006.356a1.5 1.5 0 0 0 .504 1.08l.27.235a4.5 4.5 0 0 1 0 6.794l-.27.235a1.5 1.5 0 0 0-.504 1.08l-.006.356a4.5 4.5 0 0 1-4.332 4.332l-.356.006a1.5 1.5 0 0 0-1.08.504l-.235.27a4.5 4.5 0 0 1-6.794 0l-.235-.27a1.5 1.5 0 0 0-1.08-.504l-.356-.006A4.5 4.5 0 0 1 2.5 18.691l-.006-.356a1.5 1.5 0 0 0-.504-1.08l-.27-.235a4.5 4.5 0 0 1 0-6.794l.27-.235a1.5 1.5 0 0 0 .504-1.08l.006-.356A4.5 4.5 0 0 1 6.839 4.573l.356-.006a1.5 1.5 0 0 0 1.08-.504l.235-.27Zm7.114 6.867a.75.75 0 1 0-1.134-.976l-3.26 3.788-1.531-1.53a.75.75 0 0 0-1.06 1.06l2.062 2.063a.75.75 0 0 0 1.103-.03l3.82-4.375Z" clip-rule="evenodd"/></svg>
+            </span>
+            <span id="planChip" class="chip"></span>
+            <span id="proChip" class="hidden chip">PRO</span>
+          </div>
+          <div class="mt-1 flex gap-4 text-sm muted">
+            <span class="inline-flex items-center gap-1">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m-7.5 9h15"/></svg>
+              <span id="timezone">—</span>
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm-8 18a8 8 0 1 1 16 0H4Z"/></svg>
+              <span id="type">—</span>
+            </span>
+            <span class="inline-flex items-center gap-1">
+              <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 8.25h18M4.5 7.5A1.5 1.5 0 0 0 3 9v9a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V9a1.5 1.5 0 0 0-1.5-1.5H4.5Z"/></svg>
+              <span id="registered">—</span>
+            </span>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <button id="openProfile" class="btn-primary">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4.5 4.5A2.25 2.25 0 0 0 2.25 6.75v10.5A2.25 2.25 0 0 0 4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15ZM6 8.25A.75.75 0 0 1 6.75 7.5h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 6 8.25Zm0 3A.75.75 0 0 1 6.75 10.5h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 6 11.25Zm0 3a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 0 1.5h-3.5A.75.75 0 0 1 6 14.25Z"/></svg>
+            مشاهده پروفایل
+          </button>
+          <button id="openProjects" class="btn-primary">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.25 7.5A2.25 2.25 0 0 1 4.5 5.25h4.94c.414 0 .81.164 1.103.457l1.243 1.243c.293.293.69.457 1.103.457H19.5A2.25 2.25 0 0 1 21.75 9.75v7.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25v-9.75Z"/></svg>
+            آخرین پروژه‌ها (لحظه‌ای)
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROFILE MODAL -->
+  <div id="profileModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="profileTitle">
+    <div class="modal-backdrop flex items-center justify-center p-4">
+      <div class="modal-panel max-w-3xl w-full p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="profileTitle" class="text-xl font-extrabold inline-flex items-center gap-2">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm-8 18a8 8 0 1 1 16 0H4Z"/></svg>
+            پروفایل کاربر
+          </h3>
+          <button class="text-gray-600 hover:text-gray-800" onclick="closeModal('profileModal')" aria-label="بستن">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.225 4.811 4.811 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586 6.225 4.811Z"/></svg>
+          </button>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="card p-4">
+            <div class="muted text-sm mb-1">عنوان شغلی</div>
+            <div id="job_title" class="font-medium">—</div>
+          </div>
+          <div class="card p-4">
+            <div class="muted text-sm mb-1">شهر</div>
+            <div id="city" class="font-medium">—</div>
+          </div>
+          <div class="card p-4">
+            <div class="muted text-sm mb-1">جنسیت</div>
+            <div id="gender" class="font-medium">—</div>
+          </div>
+          <div class="card p-4">
+            <div class="muted text-sm mb-1">وضعیت نام</div>
+            <div id="name_verified" class="font-medium">—</div>
+          </div>
+          <div class="card p-4 sm:col-span-2">
+            <div class="muted text-sm mb-1">درباره من</div>
+            <p id="job_description" class="leading-7">—</p>
+          </div>
+          <div class="card p-4 sm:col-span-2">
+            <div class="muted text-sm mb-3">مهارت‌ها</div>
+            <div id="skills" class="flex flex-wrap gap-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS MODAL -->
+  <div id="projectsModal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="projectsTitle">
+    <div class="modal-backdrop flex items-center justify-center p-4">
+      <div class="modal-panel max-w-5xl w-full p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 id="projectsTitle" class="text-xl font-extrabold inline-flex items-center gap-2">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.25 7.5A2.25 2.25 0 0 1 4.5 5.25h4.94c.414 0 .81.164 1.103.457l1.243 1.243c.293.293.69.457 1.103.457H19.5A2.25 2.25 0 0 1 21.75 9.75v7.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25v-9.75Z"/></svg>
+            آخرین پروژه‌ها
+          </h3>
+          <button class="text-gray-600 hover:text-gray-800" onclick="closeModal('projectsModal')" aria-label="بستن">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M6.225 4.811 4.811 6.225 10.586 12l-5.775 5.775 1.414 1.414L12 13.414l5.775 5.775 1.414-1.414L13.414 12l5.775-5.775-1.414-1.414L12 10.586 6.225 4.811Z"/></svg>
+          </button>
+        </div>
+        <div id="projects" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        <template id="project-card">
+          <article class="card p-4">
+            <h4 class="font-bold text-base mb-1">عنوان پروژه</h4>
+            <p class="text-sm muted mb-2">توضیح کوتاه پروژه…</p>
+            <div class="flex items-center justify-between text-sm">
+              <span class="chip">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15A2.25 2.25 0 0 1 2.25 17.25V6.75Zm3 0h13.5v3A2.25 2.25 0 0 1 16.5 12a2.25 2.25 0 0 1-2.25-2.25H9.75A2.25 2.25 0 0 1 7.5 12 2.25 2.25 0 0 1 5.25 9.75V6.75Z"/></svg>
+                <span class="price">—</span>
+              </span>
+              <span class="chip status">وضعیت: —</span>
+            </div>
+          </article>
+        </template>
+      </div>
+    </div>
+  </div>
+  <!-- MAIN CONTENT -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 mt-8 pb-24 space-y-8">
+    <!-- BEAUTIFUL TABLE (always visible) -->
+    <section class="card p-5">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-extrabold inline-flex items-center gap-2">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6.75A2.25 2.25 0 0 1 5.25 4.5h13.5A2.25 2.25 0 0 1 21 6.75v10.5A2.25 2.25 0 0 1 18.75 19.5H5.25A2.25 2.25 0 0 1 3 17.25V6.75Zm2.25-.75a.75.75 0 0 0-.75.75v2.25h15V6.75a.75.75 0 0 0-.75-.75H5.25Zm14.25 6h-15v5.25c0 .414.336.75.75.75h13.5c.414 0 .75-.336.75-.75V12Z"/></svg>
+          لیست پروژه‌ها (Realtime)
+        </h2>
+      </div>
+      <div class="overflow-hidden rounded-xl border border-mint-100">
+        <table class="w-full text-sm">
+          <thead class="table-head text-mint-900">
+            <tr>
+              <th class="p-3 text-right">#</th>
+              <th class="p-3 text-right">عنوان</th>
+              <th class="p-3 text-right">محدوده قیمت</th>
+              <th class="p-3 text-right">وضعیت</th>
+              <th class="p-3 text-right">به‌روزرسانی</th>
+            </tr>
+          </thead>
+          <tbody id="dataTableBody" class="divide-y divide-mint-100/70"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  
+  <script>
+        window.profile_clean = {{ profile_clean|tojson|safe }};
+        window.me_clean = {{ me_clean|tojson|safe }};
+        window.API_BASE = "";  // چون همین سرور، پس خالی بذار
+        window.POLL_MS = 10000;
+    </script>
+  <script>
+    // ===================
+    // Configurable options
+    // ===================
+    const API_BASE = window.API_BASE || ""; // اگر HTML را از همان دامنهٔ Flask سرو می‌کنید، خالی بگذارید. در غیر این صورت مثل: "http://127.0.0.1:8000"
+    const POLL_MS = window.POLL_MS || 10000; // هر ۱۰ ثانیه داده‌ها را تازه کن
+
+    // ===================
+    // Profile sources
+    // ===================
+    // انتظار: این دو متغیر سراسری قبلاً در صفحه ست شوند
+    //   window.profile_clean  — آبجکت تمیز پروفایل (ساختار extract_ponisha_profile)
+    //   window.me_clean       — اطلاعات تکمیلی کاربر/حساب فعلی
+    const profile_clean = window.profile_clean || {};
+    const me_clean = window.me_clean || {};
+
+    // Helpers
+    const el = (id) => document.getElementById(id);
+    const toISODate = (ts) => { try{ return new Date(ts*1000).toISOString().slice(0,10)}catch{ return '—'}};
+    const moneyRange = (min,max,unit) => {
+      const a = (min!=null? min.toLocaleString('fa-IR'):'—');
+      const b = (max!=null? max.toLocaleString('fa-IR'):'—');
+      return `${a}–${b} ${unit||''}`.trim();
+    };
+
+    function renderHeaderFromProfiles(){
+      // تلاش برای پیدا کردن user، avatar، cover از profile_clean
+      const u = (profile_clean.user) || {}; // اگر ساختار در root باشد: ids → سازگار باشید
+      const media = profile_clean.media || {};
+
+      const username = u.username || me_clean.username || '—';
+      const verified = u.verified ?? profile_clean.profile?.name_verified === 'تایید شده';
+      const is_pro = u.is_pro || me_clean.is_pro;
+      const plan = u.plan || me_clean.plan || '—';
+      const timezone = u.timezone || profile_clean.timezone || '—';
+      const type = u.type || profile_clean.type || '—';
+      const reg_iso = (profile_clean.registered_at && profile_clean.registered_at.iso_utc) || me_clean.registered_at_iso || '—';
+
+      const avatarUrl = media.avatar_url || u.avatar || '';
+      const coverUrl = media.cover_url || '';
+
+      el('username').textContent = username;
+      el('verifiedBadge').classList.toggle('hidden', !verified);
+      el('proChip').classList.toggle('hidden', !is_pro);
+      el('planChip').textContent = `پلن: ${plan.type}`;
+      el('timezone').textContent = timezone;
+      el('type').textContent = type;
+      el('registered').textContent = `عضویت: ${reg_iso.slice(0,10)}`;
+
+      if (avatarUrl) el('avatar').src = avatarUrl;
+      console.log(avatarUrl);
+      
+      if (coverUrl) {
+        const cover = el('cover');
+        cover.style.backgroundImage = `linear-gradient(to left, rgba(159,217,187,.35), rgba(230,245,236,.6)), url('${coverUrl}')`;
+        cover.style.backgroundSize = 'cover';
+        cover.style.backgroundPosition = 'center';
+      }
+    }
+
+    function renderProfileModalFromProfiles(){
+      const p = profile_clean.profile || {};
+      const skills = profile_clean.skills || [];
+      el('job_title').textContent = p.job_title || '—';
+      el('city').textContent = (p.city && p.city.name) || '—';
+      el('gender').textContent = p.gender || '—';
+      el('name_verified').textContent = p.name_verified || '—';
+      el('job_description').textContent = p.job_description || '—';
+      const wrap = el('skills'); wrap.innerHTML = '';
+      skills.forEach(s=>{ const span=document.createElement('span'); span.className='chip'; span.textContent=(s.title||'—'); wrap.appendChild(span); });
+    }
+
+    // ========= Realtime projects =========
+    async function fetchProjects(){
+      const url = API_BASE + '/projects';
+      const r = await fetch(url, {headers:{'accept':'application/json'}});
+      if (!r.ok) throw new Error('HTTP '+r.status);
+      return await r.json();
+    }
+
+    function fillDataTable(projects){
+      const body = el('dataTableBody'); body.innerHTML = '';
+      projects.forEach((p,i)=>{
+        const tr = document.createElement('tr'); tr.className='table-row';
+        const price = moneyRange(p.amount_min, p.amount_max, '');
+        tr.innerHTML = `
+          <td class="p-3 align-top">${i+1}</td>
+          <td class="p-3 align-top font-semibold">${p.title||'—'}</td>
+          <td class="p-3 align-top">${price}</td>
+          <td class="p-3 align-top">${p.status||'—'}</td>
+          <td class="p-3 align-top">${(p.inserted_at||'').slice(0,10)}</td>`;
+        body.appendChild(tr);
+      });
+    }
+
+    function renderProjectsModal(projects){
+      const wrap = el('projects'); wrap.innerHTML='';
+      const tpl = document.getElementById('project-card');
+      projects.slice(0,9).forEach(p=>{
+        const node = tpl.content.cloneNode(true);
+        node.querySelector('h4').textContent = p.title||'—';
+        node.querySelector('p').textContent = (p.description||'—').slice(0,120)+'…';
+        node.querySelector('.price').textContent = moneyRange(p.amount_min,p.amount_max,'');
+        node.querySelector('.status').textContent = `وضعیت: ${p.status||'—'}`;
+        wrap.appendChild(node);
+      });
+    }
+
+    function openModal(id){ document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id){ document.getElementById(id).classList.add('hidden'); }
+
+    // Bind
+    document.getElementById('openProfile').addEventListener('click', ()=>{ renderProfileModalFromProfiles(); openModal('profileModal'); });
+    document.getElementById('openProjects').addEventListener('click', async ()=>{
+      try{ const projects = await fetchProjects(); renderProjectsModal(projects); openModal('projectsModal'); }catch(e){ console.error(e); }
+    });
+
+    // Bootstrap
+    renderHeaderFromProfiles();
+
+    // First fetch + Poll
+    (async function poll(){
+      try{ const projects = await fetchProjects(); fillDataTable(projects); }catch(e){ console.error('[poll]', e); }
+      setTimeout(poll, POLL_MS);
+    })();
+  </script>
+</body>
+</html>

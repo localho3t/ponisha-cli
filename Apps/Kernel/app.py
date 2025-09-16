@@ -1,5 +1,6 @@
 from Apps.Kernel.utils import Utils
 import os
+from Apps.WebApp.app import flask_app
 class AppKernel:
 
     def __init__(self,mefile,profilefile):
@@ -9,14 +10,13 @@ class AppKernel:
     
     def start(self):
         self.__file_settings()
-        print(self.me_clean)
+        flask_app(self.profile_clean,self.me_clean)
         
 
 
     def __file_settings(self):
         self.me_clean =  self.utils.extract_users_from_file(self.me_file)
         self.profile_clean = self.utils.extract_from_profile_file(self.profile_file)
-        print(self.profile_clean)
         self.__delete_file(self.me_file)
         self.__delete_file(self.profile_file)
         
