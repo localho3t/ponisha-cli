@@ -57,7 +57,7 @@ class Utils:
 
         try:
             obj = json.loads(text)
-            print("[OK] Parsed as standard JSON.")
+            # print("[OK] Parsed as standard JSON.")
         except JSONDecodeError:
             print("[WARN] Not standard JSON, trying NDJSON (one JSON per line)...")
             lines = [ln for ln in text.splitlines() if ln.strip()]
@@ -74,7 +74,7 @@ class Utils:
 
         if isinstance(obj, dict):
             out = self._extract_one_user(obj)
-            print(json.dumps(out, ensure_ascii=False, indent=2))
+            # print(json.dumps(out, ensure_ascii=False, indent=2))
             return out
         elif isinstance(obj, list):
             out_list = []
@@ -83,7 +83,7 @@ class Utils:
                     print("[WARN] Skipping non-dict item in array.")
                     continue
                 out_list.append(self._extract_one_user(item))
-            print(json.dumps(out_list, ensure_ascii=False, indent=2))
+            # print(json.dumps(out_list, ensure_ascii=False, indent=2))
             return out_list
         else:
             print("[ERR] Parsed JSON is neither dict nor list.")
