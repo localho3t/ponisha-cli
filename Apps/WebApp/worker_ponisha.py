@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 import requests
 from sqlalchemy import select
 from Apps.WebApp.models import db, Project
-
+from Apps.Notification.Notif import Notif
 JSON_HEADERS = {
     "accept": "application/json, text/plain, */*",
     "content-type": "application/json",
@@ -78,6 +78,7 @@ def upsert_new_projects(app, page_json):
                 bidders_json=_safe_json(item.get("bidders")),
             )
             db.session.add(p)
+            Notif(f"[*] {item.get('title')} - {item.get('amount_min')} - {item.get('amount_max')}",1)
             inserted += 1
 
         if inserted:
