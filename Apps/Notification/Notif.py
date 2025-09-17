@@ -10,7 +10,7 @@ class Notif:
     def __exec(self):
         if (self.status == 1):
             notification.notify(
-                title="یادآوری",
+                title="Ponisha - CLI",
                 message=f"{self.message}",
                 app_name="[Ponisha]",
                 timeout=5
