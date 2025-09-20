@@ -81,8 +81,10 @@ python3 main.py
 
 
 ![کاور](src/bg.png)
+![کاور](src/notify.png)
+![کاور](src/profile.png)
+![کاور](src/projects-realtine.png)
 ---
-
 ## 🔐 نکات امنیتی
 
 * توکن را **در مخزن عمومی کامیت نکنید**. برای امنیت بیشتر از متغیر محیطی استفاده کنید.
