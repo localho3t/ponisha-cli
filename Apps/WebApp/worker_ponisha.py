@@ -1,5 +1,5 @@
 import json
-import time
+from time import sleep
 import threading
 from datetime import datetime, timezone
 import requests
@@ -134,6 +134,7 @@ def ponisha_loop(app, cfg, stop_event: threading.Event):
                 page += 1
 
             print(f"[WORKER] cycle done. total inserted this cycle: {total_inserted}")
+            sleep(.3)
         except Exception as e:
             print(f"[WORKER] loop error: {e}")
 

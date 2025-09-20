@@ -32,6 +32,7 @@ def flask_app(profile_clean,me_clean):
     def handle_sig(*_):
         print("Shutting down gracefully...")
         stop_event.set()
+        exit()
 
     signal.signal(signal.SIGINT, handle_sig)
     signal.signal(signal.SIGTERM, handle_sig)
